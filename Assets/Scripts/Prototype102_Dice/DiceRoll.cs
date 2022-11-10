@@ -22,5 +22,20 @@ public class DiceRoll : MonoBehaviour
          if(Input.GetKeyDown("space"))
 
         Debug.Log ("You rolled a " +diceNumber );
-    }
+
+            if( diceNumber == 3)
+           { 
+            Debug.Log ("Win by 3");
+            }
+
+              if( diceNumber == 5)
+           { 
+            Debug.Log ("Win by 4");
+            }
+
+              if( diceNumber == 4)
+           { 
+            Debug.Log ("Win by 5");
+            }
+}
 }
