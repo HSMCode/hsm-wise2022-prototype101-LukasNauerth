@@ -16,26 +16,29 @@ public class DiceRoll : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown("space"))
-
+        
         diceNumber = Random.Range (1, 7);
 
          if(Input.GetKeyDown("space"))
 
         Debug.Log ("You rolled a " +diceNumber );
 
-            if( diceNumber == 3)
+            if( diceNumber == 3 )
            { 
             Debug.Log ("Win by 3");
+            diceNumber = 0;
             }
 
               if( diceNumber == 5)
            { 
-            Debug.Log ("Win by 4");
+            Debug.Log ("Win by 5");
+            diceNumber = 0;
             }
 
               if( diceNumber == 4)
            { 
-            Debug.Log ("Win by 5");
+            Debug.Log ("Win by 4");
+            diceNumber = 0;
             }
 }
 }
