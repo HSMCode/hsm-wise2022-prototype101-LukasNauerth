@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class TriggerGoal : MonoBehaviour
 {
+
+     void Start()
+    {
+         ParticleSystem part= GetComponent<ParticleSystem>();
+         part.Pause();
+
+    }
+
     public GameObject Roboter;
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +20,8 @@ public class TriggerGoal : MonoBehaviour
         if(other.name == Roboter.name)
         {
             Debug.Log("Victory !");
+            var part = GetComponent <ParticleSystem>();
+            part.Play();
         }
     }
 }
