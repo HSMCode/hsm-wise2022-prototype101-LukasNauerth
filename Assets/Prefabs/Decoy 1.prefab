@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8fe0776b9d1dc864fb50eb803323c32e, type: 2}
+  - {fileID: 2100000, guid: 7e5c4be552dc7ea4aafc97ed97600759, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 8556601110232497566}
   - component: {fileID: -1652034183783499615}
   m_Layer: 0
-  m_Name: Decoy
+  m_Name: Decoy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

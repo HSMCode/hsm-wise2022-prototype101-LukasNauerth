@@ -5,14 +5,12 @@ using UnityEngine;
 public class TriggerGoal : MonoBehaviour
 {
 
-     void Start()
-    {
-         ParticleSystem part= GetComponent<ParticleSystem>();
-         part.Pause();
+    public ParticleSystem playParticlesSystem;
+    public ParticleSystem emitParticlesSystem;
 
-    }
+      public GameObject Roboter;
 
-    public GameObject Roboter;
+  
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(gameObject.name + " GOT SMASHED BY " + other.name);
@@ -20,8 +18,40 @@ public class TriggerGoal : MonoBehaviour
         if(other.name == Roboter.name)
         {
             Debug.Log("Victory !");
-            var part = GetComponent <ParticleSystem>();
-            part.Play();
+            EmitParticles();
+        
         }
     }
+
+
+    void EmitParticles()
+    {
+        emitParticlesSystem.Emit(500);
+    }
+
+    void PlayParticles(bool on)
+    {
+        if(on)
+        {
+        playParticlesSystem.Play();
+        }
+        else if(!on)
+        {
+        playParticlesSystem.Stop();
+        }
+    }
+
+ private void OnTriggerExit(Collider other)
+ {
+     Debug.Log(other.name + "triggered into" + gameObject.name);
+     if (other.name == Roboter.name)
+     {
+         Debug.Log("Exit");
+         PlayParticles(false);
+     }
+ }
+
 }
+
+
+

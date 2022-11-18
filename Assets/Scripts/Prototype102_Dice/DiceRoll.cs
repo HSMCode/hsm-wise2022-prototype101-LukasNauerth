@@ -18,7 +18,7 @@ AudioSource WinSound;
     void Update()
     {
         if(Input.GetKeyDown("space"))
-        
+        {
         diceNumber = Random.Range (1, 51);
 
          if(Input.GetKeyDown("space"))
@@ -32,5 +32,11 @@ AudioSource WinSound;
             diceNumber = 0;
             WinSound.Play ();
             }
+            else
+            {
+                Debug.Log ("Sorry, you lost!");
+                
+            }
+        }
 }
 }
