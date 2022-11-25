@@ -6,6 +6,7 @@ public class DiceRoll : MonoBehaviour
 
 {
 AudioSource WinSound;
+public ParticleSystem emitParticlesSystem;
 
     public float diceNumber =0f;
     // Start is called before the first frame update
@@ -31,6 +32,7 @@ AudioSource WinSound;
             Debug.Log ("Win by " +diceNumber);
             diceNumber = 0;
             WinSound.Play ();
+            EmitParticles();
             }
             else
             {
@@ -39,4 +41,11 @@ AudioSource WinSound;
             }
         }
 }
+
+     void EmitParticles()
+    {
+        emitParticlesSystem.Emit(50);
+    }
+
+
 }
