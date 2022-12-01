@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float turnSpeed;
     public Vector3 force;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask ground;
 
     private Animator _playerAnim;
 
@@ -40,10 +42,16 @@ public class PlayerController : MonoBehaviour
              _playerAnim.SetBool("Walk", false);
         }
         
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             _playerRb.AddForce(force, ForceMode.Impulse);
             _playerAnim.SetTrigger("Jump");
         }
     }
+        
+        bool IsGrounded()
+        {
+            return Physics.CheckSphere(groundCheck.position, 0.1f, ground );
+        }
+    
 }
