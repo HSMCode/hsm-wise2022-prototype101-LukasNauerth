@@ -52,7 +52,27 @@ public class PlayerController : MonoBehaviour
 
             isOnGround = false;
         }
+
+
+        if(Input.GetKeyDown(KeyCode.Q) && isOnGround)
+        {
+            _playerAnim.SetTrigger("Dancing");
+
+        }
+
+
     }
+
+
+       /* void FixedUpdate()
+        {
+            if(isJumping)
+            {
+                gravityModifier =1f;
+                _playerRb
+            }
+        }
+*/
 
     // private void OnTriggerEnter(Collider other)
     // {
@@ -71,6 +91,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    
 }
 
 
