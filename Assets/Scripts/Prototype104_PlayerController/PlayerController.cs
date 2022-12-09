@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float horizontalInput;
-    public float forwardInput;
-    public float speed;
-    public float turnSpeed;
-    public Vector3 force;
-    [SerializeField] Transform groundCheck;
-    [SerializeField] LayerMask ground;
+    private float horizontalInput;
+    private float forwardInput;
+    [SerializeField] float turnSpeed;    
+    [SerializeField] float speed;
 
     private Animator _playerAnim;
 
     private Rigidbody _playerRb;
+    public Vector3 force;
+
+    public bool isOnGround;
+
 
     // Start is called before the first frame update
     void Start()
     {
-      _playerAnim = GetComponent<Animator>();  
-      _playerRb = GetComponent<Rigidbody>();
+        _playerAnim = GetComponent<Animator>();
+        _playerRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -29,29 +30,67 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.forward * forwardInput* Time.deltaTime * speed);
-        transform.Rotate(Vector3.up * horizontalInput* Time.deltaTime * turnSpeed);
+        transform.Rotate(Vector3.up * horizontalInput * Time.deltaTime * turnSpeed);
+        transform.Translate(Vector3.forward * forwardInput * Time.deltaTime * speed);
+        
         _playerAnim.SetFloat("Run", forwardInput);
 
-        if(forwardInput != 0 || horizontalInput !=0)
+        if(forwardInput != 0 || horizontalInput != 0)
         {
-             _playerAnim.SetBool("Walk", true);
-        }
-        else
+            _playerAnim.SetBool("Walk", true);
+        } 
+        else 
         {
-             _playerAnim.SetBool("Walk", false);
+            _playerAnim.SetBool("Walk", false);    
         }
-        
-        if(Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+
+
+        if(Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
             _playerRb.AddForce(force, ForceMode.Impulse);
             _playerAnim.SetTrigger("Jump");
+
+            isOnGround = false;
         }
     }
-        
-        bool IsGrounded()
+
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if(other.gameObject.CompareTag("Ground"))
+    //     {
+    //         isOnGround = true;
+    //     }
+    // }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
         {
-            return Physics.CheckSphere(groundCheck.position, 0.1f, ground );
+            isOnGround = true;
         }
-    
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
